@@ -51,6 +51,8 @@ player.add(playerMesh);
 
 // Create a CollisionObject for the player.
 const playerCollisionObject = new CollisionObject(playerMesh);
+playerCollisionObject.dynamic = true;
+playerCollisionObject.health = 3;
 
 // Add an OnIntersectListener so that we can react to the player colliding into other CollisionObjects in the world.
 playerCollisionObject.setOnIntersectListener((delta, entity) => {
@@ -61,6 +63,13 @@ playerCollisionObject.setOnIntersectListener((delta, entity) => {
 
     // and destroy the collision object.
     entity.destroy();
+
+    playerCollisionObject.health -= 1;
+
+    if(playerCollisionObject.health === 0) {
+        if(window.alert("You died")) {}
+        else    window.location.reload();
+    }
 });
 
 physicsManager.add(playerCollisionObject);

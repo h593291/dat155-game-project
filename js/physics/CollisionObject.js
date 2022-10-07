@@ -5,6 +5,10 @@ export default class CollisionObject {
 
         this.mesh = mesh;
 
+        this.dynamic = false;
+
+        this.health = 0;
+
         this._onIntersect = null;
 
         this._destroy = false;
